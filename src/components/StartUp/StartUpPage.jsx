@@ -1,7 +1,12 @@
 const StartUpPage = () => {
+
+
+
   return (
-    <div>
-      <h1>Start Up Page</h1>
+    <div className="Login">
+
+        <input type="text" placeholder="username"/>
+        <button>Login</button>
     </div>
   )
 }

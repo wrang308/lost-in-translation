@@ -16,7 +16,38 @@ const TranslationPage = () => {
       alert("text can only contain a-z and spaces");
       return;
     }
+
+    console.log(localStorage.getItem("username"));
     
+    const url = "http://localhost:3000/users/";
+    fetch((url+"?username="+localStorage.getItem("username")), {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((response) => response.json())
+    .then(data => {
+      console.log(data[0].id)
+      //user doesn't exist, add to database
+        console.log(JSON.stringify(translationText))
+        fetch((url+data[0].id+"/searches"), {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            "text":translationText,
+            "status":"active",
+            "userId": data[0].id
+        }),
+        })
+      
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    })
+
     console.log(translationText)
     setClicked(true)
   }

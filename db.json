@@ -9,6 +9,58 @@
       "username": "asd",
       "searches": [],
       "id": 2
+    },
+    {
+      "text": "hello",
+      "id": 5
+    },
+    {
+      "username": "fds",
+      "id": 6
+    }
+  ],
+  "searches": [
+    {
+      "text": "hello",
+      "userId": "1",
+      "status": "active",
+      "id": 1
+    },
+    {
+      "text": "hello",
+      "userId": "1",
+      "status": "active",
+      "id": 2
+    },
+    {
+      "text": "hello",
+      "userId": "2",
+      "status": "active",
+      "id": 3
+    },
+    {
+      "text": "hello",
+      "userId": "1",
+      "status": "active",
+      "id": 4
+    },
+    {
+      "text": "hello",
+      "status": "active",
+      "userId": "1",
+      "id": 5
+    },
+    {
+      "text": "asd",
+      "status": "active",
+      "userId": "6",
+      "id": 6
+    },
+    {
+      "text": "asd",
+      "status": "active",
+      "userId": "2",
+      "id": 7
     }
   ]
 }

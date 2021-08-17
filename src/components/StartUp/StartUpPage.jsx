@@ -27,12 +27,12 @@ const StartUpPage = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      //body: JSON.stringify(user),
     })
     .then((response) => response.json())
     .then(data => {
+      console.log(JSON.stringify(user));
+      //user doesn't exist, add to database
       if(data.length == 0){
-        console.log("doesn't exist")
         fetch((url), {
           method: 'POST',
           headers: {
@@ -41,18 +41,6 @@ const StartUpPage = () => {
           body: JSON.stringify(user),
         })
       }
-      console.log(data)
-      //console.log(data.json())
-      //console.log(data.json().length)
-      console.log(JSON.stringify(data))
-      //if(data)
-      /* fetch((url), {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(user),
-      }) */
     })
     .catch((error) => {
       console.error('Error:', error);

@@ -43,58 +43,49 @@
   height: 100%;
 }
 
+.usersTranslationsTitle {
+  color: #fff;
+  text-transform: uppercase;
+  z-index: 10;
+}
+
 .card {
-  background-color: #fff;
-  width: 950px;
-  min-height: 320px;
+  min-width: 600px;
+  min-height: 100px;
   z-index: 10;
   backdrop-filter: blur(25px);
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(229, 188, 153, 0.61);
   box-shadow: 0 4px 20px 0 rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.3);
   transition: 0.3s;
   margin: 40px;
+  margin-bottom: 15px;
   border-radius: 30px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
 }
 
-.translatorInput {
-  padding: 15px 50px;
-  border: none;
-  border-radius: 10px;
-  width: 70%;
-  margin-top: 100px;
-}
-
-.translateBtn, .logOutBtn {
-  padding: 15px 50px;
-  margin-top: 30px;
-  border: none;
-  border-radius: 10px;
-  background-color: #87CEEB;
+.userTranslation {
   color: #fff;
-  font-size: 22px;
-  text-transform: uppercase;
-  font-weight: 600;
+  font-size: 18px;
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  transform: translate(-50%,-50%);
 }
 
-.translateBtn:hover, .logOutBtn:hover {
-  background-color: #73B0C9;
-  cursor: pointer;
-}
-
-.logOutBtn {
-  margin-bottom: 30px;
-}
-
-.translationContainer {
-  width: 70%;
-  height: 300px;
-  margin-top: 40px;
-  margin-bottom: 100px;
-  background-color: #fff;
-  box-shadow: 0 4px 20px 0 rgba(255, 255, 255, 0.1);
+.deleteTranslationBtn {
+  background-color: #c51927;
+  border: none;
+  padding: 10px;
   border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  margin-left: 200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.deleteTranslationBtn:hover {
+  background-color: #a81723;
 }

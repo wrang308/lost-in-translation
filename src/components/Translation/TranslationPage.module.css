@@ -46,7 +46,7 @@
 .card {
   background-color: #fff;
   width: 950px;
-  min-height: 700px;
+  min-height: 320px;
   z-index: 10;
   backdrop-filter: blur(25px);
   background-color: rgba(255, 255, 255, 0.1);
@@ -70,14 +70,14 @@
 
 .translateBtn {
   padding: 15px 50px;
+  margin-top: 30px;
   border: none;
   border-radius: 10px;
   background-color: #87CEEB;
-  text-transform: uppercase;
   color: #fff;
-  font-weight: 600;
-  margin-top: 15px;
   font-size: 22px;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .translateBtn:hover {

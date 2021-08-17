@@ -7,7 +7,7 @@ const TranslationPage = () => {
     <div className={styles.bottom}></div>
     <div className={styles.center}>
       <div className={styles.card}>
-        <input className={styles.translatorInput} type="text" name="translation" id="translation" />
+        <input className={styles.translatorInput} type="text" name="translation" id="translation" placeholder="Please type what you wish to translate" />
         <button className={styles.translateBtn}>Translate</button>
       </div>
     </div>

@@ -82,4 +82,5 @@
 
 .translateBtn:hover {
   background-color: #73B0C9;
+  cursor: pointer;
 }

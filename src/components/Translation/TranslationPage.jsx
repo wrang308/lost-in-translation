@@ -8,6 +8,7 @@ const TranslationPage = () => {
 
   const handleTranslateBtn = () => {
     setClicked(true)
+    //även automatiskt spara translations till db
   }
 
   if(!localStorage.getItem('username')){
@@ -19,22 +20,21 @@ const TranslationPage = () => {
       history.goBack(history.length-1)
   }
 
-
   return (
     <div className={styles.container}>
-    <div className={styles.top}></div>
-    <div className={styles.bottom}></div>
-    <div className={styles.center}>
-      <div className={styles.card}>
-        <input className={styles.translatorInput} type="text" name="translation" id="translation" placeholder="Please type what you wish to translate" />
+      <div className={styles.top}></div>
+      <div className={styles.bottom}></div>
+      <div className={styles.center}>
+        <div className={styles.card}>
+          <input className={styles.translatorInput} type="text" name="translation" id="translation" placeholder="Please type what you wish to translate" />
 
-        <button className={styles.translateBtn} onClick={handleTranslateBtn}>Translate</button>
-        {clicked === true && (
-          <div className={styles.translationContainer}></div>
-        )}
-        <button className={styles.translateBtn} onClick={handleLogOut}>log out</button>
+          <button className={styles.translateBtn} onClick={handleTranslateBtn}>Translate</button>
+          {clicked === true && (
+            <div className={styles.translationContainer}></div>
+          )}
+          <button className={styles.logOutBtn} onClick={handleLogOut}>log out</button>
+        </div>
       </div>
-    </div>
     </div>
   )
 }

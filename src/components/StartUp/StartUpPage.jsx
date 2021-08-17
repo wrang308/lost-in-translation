@@ -21,13 +21,41 @@ const StartUpPage = () => {
   }
 
   const postUser = (user) => {
-    const url = "http://localhost:3000/users";
-    fetch((url), {
-      method: 'POST',
+    const url = "http://localhost:3000/users/";
+    fetch((url+"?username="+username), {
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(user),
+      //body: JSON.stringify(user),
+    })
+    .then((response) => response.json())
+    .then(data => {
+      if(data.length == 0){
+        console.log("doesn't exist")
+        fetch((url), {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(user),
+        })
+      }
+      console.log(data)
+      //console.log(data.json())
+      //console.log(data.json().length)
+      console.log(JSON.stringify(data))
+      //if(data)
+      /* fetch((url), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user),
+      }) */
+    })
+    .catch((error) => {
+      console.error('Error:', error);
     })
   }
   const handleUsernameChange = e => {

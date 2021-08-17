@@ -15,8 +15,20 @@ const StartUpPage = () => {
     if(username != ''){
       localStorage.clear();
       localStorage.setItem('username', username);
+      postUser({"username":username, "searches": []});
       history.push('/translator')
     }
+  }
+
+  const postUser = (user) => {
+    const url = "http://localhost:3000/users";
+    fetch((url), {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    })
   }
   const handleUsernameChange = e => {
     setUsername(e.target.value);

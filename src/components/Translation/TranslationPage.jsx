@@ -12,6 +12,10 @@ const TranslationPage = () => {
       alert("max 40 characters long text");
       return;
     }
+    if(/[^a-zA-Z]/.test(translationText)){
+      alert("text can only contain a-z and spaces");
+      return;
+    }
     
     console.log(translationText)
     setClicked(true)

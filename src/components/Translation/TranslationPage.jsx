@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useHistory  } from 'react-router'
+import { useHistory } from 'react-router'
 import styles from '../Translation/TranslationPage.module.css'
 
 const TranslationPage = () => {
@@ -25,10 +25,10 @@ const TranslationPage = () => {
     history.goBack(history.length-1)
   }
 
-  const handleLogOut = () => {
-      localStorage.clear();
-      history.goBack(history.length-1)
-  }
+  // const handleLogOut = () => {
+  //     localStorage.clear();
+  //     history.goBack(history.length-1)
+  // }
 
   const handleTranslationTextChange = e => {
     setTranslationText(e.target.value);
@@ -46,7 +46,7 @@ const TranslationPage = () => {
           {clicked === true && (
             <div className={styles.translationContainer}></div>
           )}
-          <button className={styles.translateBtn} onClick={handleLogOut}>log out</button>
+          {/* <button className={styles.translateBtn} onClick={handleLogOut}>log out</button> */}
         </div>
       </div>
     </div>

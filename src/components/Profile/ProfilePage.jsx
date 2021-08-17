@@ -1,5 +1,6 @@
-import styles from '../Profile/ProfilePage.module.css'
 import { FaRegTrashAlt } from 'react-icons/fa'
+import Navbar from '../Navbar/Navbar'
+import styles from '../Profile/ProfilePage.module.css'
 
 const ProfilePage = () => {
   const arr = [1, 2, 3]
@@ -10,6 +11,7 @@ const ProfilePage = () => {
 
   return (
     <div className={styles.container}>
+      <Navbar />
       <div className={styles.top}></div>
       <div className={styles.bottom}></div>
       <div className={styles.center}>

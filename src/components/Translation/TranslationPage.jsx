@@ -1,7 +1,16 @@
+import styles from '../Translation/TranslationPage.module.css'
+
 const TranslationPage = () => {
   return (
-    <div>
-      <h1>Translation Page</h1>
+    <div className={styles.container}>
+    <div className={styles.top}></div>
+    <div className={styles.bottom}></div>
+    <div className={styles.center}>
+      <div className={styles.card}>
+        <input className={styles.translatorInput} type="text" name="translation" id="translation" placeholder="Please type what you wish to translate" />
+        <button className={styles.translateBtn}>Translate</button>
+      </div>
+    </div>
     </div>
   )
 }

@@ -84,3 +84,13 @@
   background-color: #73B0C9;
   cursor: pointer;
 }
+
+.translationContainer {
+  width: 70%;
+  height: 300px;
+  margin-top: 40px;
+  margin-bottom: 100px;
+  background-color: #fff;
+  box-shadow: 0 4px 20px 0 rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}

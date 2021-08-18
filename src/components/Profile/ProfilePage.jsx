@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FaRegTrashAlt } from 'react-icons/fa'
 import Navbar from '../Navbar/Navbar'
 import styles from '../Profile/ProfilePage.module.css'
@@ -8,7 +8,7 @@ const ProfilePage = () => {
   const [translations, setTranslations] = useState(null)
   let arr = []
 
-  if(!translations){
+  useEffect(() => {
   const url = "http://localhost:3000/";
     fetch((url+"users/?username="+localStorage.getItem("username")), {
       method: 'GET',
@@ -37,7 +37,7 @@ const ProfilePage = () => {
     .catch((error) => {
       console.error('Error:', error);
     })
-  }
+  }, [])
 
   const deleteTranslation = () => {
     //delete translation

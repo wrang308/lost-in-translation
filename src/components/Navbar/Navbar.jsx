@@ -7,7 +7,7 @@ const Navbar = () => {
 
   const handleLogOut = () => {
     localStorage.clear();
-    
+    history.push('/')
   }
 
   

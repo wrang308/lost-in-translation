@@ -7,7 +7,8 @@ const Navbar = () => {
 
   const handleLogOut = () => {
     localStorage.clear();
-    history.push('/')
+    history.goBack('/');
+    //history.push('/')
   }
 
   

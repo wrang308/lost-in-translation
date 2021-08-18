@@ -78,6 +78,7 @@
 }
 
 .deleteTranslationBtn {
+  z-index: 99999999;
   background-color: #c51927;
   border: none;
   padding: 10px;

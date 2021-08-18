@@ -25,11 +25,6 @@ const TranslationPage = () => {
     history.goBack(history.length-1)
   }
 
-  // const handleLogOut = () => {
-  //     localStorage.clear();
-  //     history.goBack(history.length-1)
-  // }
-
   const handleTranslationTextChange = e => {
     setTranslationText(e.target.value);
   }
@@ -40,13 +35,18 @@ const TranslationPage = () => {
       <div className={styles.bottom}></div>
       <div className={styles.center}>
         <div className={styles.card}>
-          <input className={styles.translatorInput} type="text" name="translation" id="translation" placeholder="Please type what you wish to translate" onChange={handleTranslationTextChange}/>
-
+          <input 
+            className={styles.translatorInput} 
+            type="text" 
+            name="translation" 
+            id="translation" 
+            placeholder="Please type what you wish to translate" 
+            onChange={handleTranslationTextChange}
+          />
           <button className={styles.translateBtn} onClick={handleTranslateBtn}>Translate</button>
           {clicked === true && (
             <div className={styles.translationContainer}></div>
           )}
-          {/* <button className={styles.translateBtn} onClick={handleLogOut}>log out</button> */}
         </div>
       </div>
     </div>

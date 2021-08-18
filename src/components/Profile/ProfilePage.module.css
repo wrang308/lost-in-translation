@@ -89,8 +89,10 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
+  transition: all .5s;
 }
 
 .deleteTranslationBtn:hover {
-  background-color: #a81723;
+  background-color: #991520;
+  transition: all .5s;
 }

@@ -19,7 +19,7 @@ const ProfilePage = () => {
       {arr.map((a, i) => {
           return (
             <div className={styles.card} key={i}>
-              <p className={styles.userTranslation}>Translate Translate Translate Translate</p>
+              <p className={styles.userTranslation}>Translate Translate Translate Translate</p> 
               <button className={styles.deleteTranslationBtn} onClick={deleteTranslation}><FaRegTrashAlt /> Delete</button>
             </div>
          )

@@ -68,7 +68,7 @@
   margin-top: 100px;
 }
 
-.translateBtn, .logOutBtn {
+.translateBtn {
   padding: 15px 50px;
   margin-top: 30px;
   border: none;
@@ -78,11 +78,13 @@
   font-size: 22px;
   text-transform: uppercase;
   font-weight: 600;
+  transition: all .5s;
 }
 
-.translateBtn:hover, .logOutBtn:hover {
+.translateBtn:hover {
   background-color: #73B0C9;
   cursor: pointer;
+  transition: all .5s;
 }
 
 .logOutBtn {

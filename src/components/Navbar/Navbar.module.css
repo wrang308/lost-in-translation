@@ -5,9 +5,6 @@
   z-index: 9999;
   height: 110px;
   background-color: #2f3c9944;
-  /* backdrop-filter: blur(25px);
-  background-color: rgba(229, 188, 153, 0.418);
-  box-shadow: 0 4px 20px 0 rgba(255, 255, 255, 0.1); */
 }
 
 .header a {
@@ -50,11 +47,13 @@
   font-size: 22px;
   text-transform: uppercase;
   font-weight: 600;
+  transition: all .5s;
 }
 
 .logOutBtn:hover {
   background-color: #73B0C9;
   cursor: pointer;
+  transition: all .5s;
 }
 
 .navlinkTranslate, .navlinkProfile {

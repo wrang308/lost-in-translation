@@ -1,6 +1,5 @@
 import { NavLink } from 'react-router-dom';
 import { useHistory  } from 'react-router'
-
 import styles from '../Navbar/Navbar.module.css'
 
 const Navbar = () => {
@@ -8,7 +7,6 @@ const Navbar = () => {
 
   const handleLogOut = () => {
     localStorage.clear();
-    // history.goBack(history.length-1)
     history.push('/')
   }
 

@@ -5,9 +5,10 @@ import styles from '../Profile/ProfilePage.module.css'
 
 const ProfilePage = () => {
   const [translations, setTranslations] = useState(null)
+  const url = "http://localhost:3000/";
 
   useEffect(() => {
-  const url = "http://localhost:3000/";
+ 
     fetch((url+"users/?username="+localStorage.getItem("username")), {
       method: 'GET',
       headers: {
@@ -35,7 +36,52 @@ const ProfilePage = () => {
   }, [])
 
   const deleteTranslation = () => {
-    //delete translation
+
+    fetch((url+"users/?username="+localStorage.getItem("username")), {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((response) => response.json())
+    .then(data => {
+        fetch((url+"searches?status=active&userId="+data[0].id), {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+        .then((response) => response.json())
+        .then(data => {
+          console.log(data)
+          
+            for (const element of data) {
+              fetch((url+"searches/"+element.id), {
+                method: 'PATCH',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({"status":"deleted"})
+              })
+  
+              //console.log(e.id)
+            }
+            
+          //data.map(e => {
+
+
+          //loopa igenom allt här
+
+          
+        })
+      
+    })
+    
+    .catch((error) => {
+      console.error('Error:', error);
+    })
+
+    setTranslations(null)
   }
 
   return (

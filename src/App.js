@@ -7,7 +7,6 @@ import {
   BrowserRouter, 
   Switch, 
   Route, 
-  Redirect 
 } from 'react-router-dom';
 
 function App() {

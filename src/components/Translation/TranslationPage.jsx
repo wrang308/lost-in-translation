@@ -7,6 +7,7 @@ const TranslationPage = () => {
   const history = useHistory();
   const [translationText, setTranslationText] = useState('')
   const [clicked, setClicked] = useState(false)
+  const [images, setImages] = useState(null)
 
   const handleTranslateBtn = () => {
     if(translationText.length > 40){
@@ -51,6 +52,7 @@ const TranslationPage = () => {
 
     console.log(translationText)
     setClicked(true)
+    translateTextToImages()
   }
 
   if(!localStorage.getItem('username')){
@@ -59,6 +61,10 @@ const TranslationPage = () => {
 
   const handleTranslationTextChange = e => {
     setTranslationText(e.target.value);
+  }
+
+  const translateTextToImages = () => {
+    setImages(translationText.split('').map(e => `../media/signs/${e}.png`))
   }
 
   return (
@@ -78,7 +84,11 @@ const TranslationPage = () => {
           />
           <button className={styles.translateBtn} onClick={handleTranslateBtn}>Translate</button>
           {clicked === true && (
-            <div className={styles.translationContainer}></div>
+            <div className={styles.translationContainer}>
+              {images && images.map((e, i) => {
+                return <img src={e} alt={e} key={i} className={styles.signImages} />
+              })}
+            </div>
           )}
         </div>
       </div>

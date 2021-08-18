@@ -12,7 +12,7 @@ const StartUpPage = () => {
 
   const handleOnClick = () => {
     
-    if(username != ''){
+    if(username !== ''){
       localStorage.clear();
       localStorage.setItem('username', username);
       postUser({"username":username, "searches": []});
@@ -32,7 +32,7 @@ const StartUpPage = () => {
     .then(data => {
       console.log(JSON.stringify(user));
       //user doesn't exist, add to database
-      if(data.length == 0){
+      if(data.length === 0){
         fetch((url), {
           method: 'POST',
           headers: {

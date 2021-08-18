@@ -17,6 +17,11 @@
     {
       "username": "fds",
       "id": 6
+    },
+    {
+      "username": "twix",
+      "searches": [],
+      "id": 7
     }
   ],
   "searches": [
@@ -61,6 +66,42 @@
       "status": "active",
       "userId": "2",
       "id": 7
+    },
+    {
+      "text": "I",
+      "status": "active",
+      "userId": "7",
+      "id": 8
+    },
+    {
+      "text": "",
+      "status": "active",
+      "userId": "7",
+      "id": 9
+    },
+    {
+      "text": "",
+      "status": "active",
+      "userId": "7",
+      "id": 10
+    },
+    {
+      "text": "",
+      "status": "active",
+      "userId": "7",
+      "id": 11
+    },
+    {
+      "text": "",
+      "status": "active",
+      "userId": "7",
+      "id": 12
+    },
+    {
+      "text": "",
+      "status": "active",
+      "userId": "7",
+      "id": 13
     }
   ]
 }

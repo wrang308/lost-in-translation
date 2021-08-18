@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router'
+import Navbar from '../Navbar/Navbar'
 import styles from '../Translation/TranslationPage.module.css'
 
 const TranslationPage = () => {
@@ -62,6 +63,7 @@ const TranslationPage = () => {
 
   return (
     <div className={styles.container}>
+      <Navbar />
       <div className={styles.top}></div>
       <div className={styles.bottom}></div>
       <div className={styles.center}>

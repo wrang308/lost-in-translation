@@ -7,6 +7,11 @@ const Navbar = () => {
 
   const handleLogOut = () => {
     localStorage.clear();
+    
+  }
+
+  
+  if(!localStorage.getItem('username')){
     history.push('/')
   }
 

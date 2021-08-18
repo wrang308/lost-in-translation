@@ -55,10 +55,6 @@ const TranslationPage = () => {
     translateTextToImages()
   }
 
-  if(!localStorage.getItem('username')){
-    history.goBack(history.length-1)
-  }
-
   const handleTranslationTextChange = e => {
     setTranslationText(e.target.value);
   }

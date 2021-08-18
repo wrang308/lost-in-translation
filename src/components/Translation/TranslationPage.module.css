@@ -105,3 +105,9 @@
 .navlinks {
   z-index: 30;
 }
+
+.signImages {
+  width: 100px;
+  height: 100px;
+  margin-top: 10px;
+}

@@ -86,7 +86,7 @@ const TranslationPage = () => {
           {clicked === true && (
             <div className={styles.translationContainer}>
               {images && images.map((e, i) => {
-                return <img src={e} alt={e} key={i} height={'100px'} width={'100px'}/>
+                return <img src={e} alt={e} key={i} className={styles.signImages} />
               })}
             </div>
           )}

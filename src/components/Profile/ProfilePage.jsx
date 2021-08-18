@@ -1,5 +1,6 @@
-import styles from '../Profile/ProfilePage.module.css'
 import { FaRegTrashAlt } from 'react-icons/fa'
+import Navbar from '../Navbar/Navbar'
+import styles from '../Profile/ProfilePage.module.css'
 
 const ProfilePage = () => {
   const arr = [1, 2, 3]
@@ -10,6 +11,7 @@ const ProfilePage = () => {
 
   return (
     <div className={styles.container}>
+      <Navbar />
       <div className={styles.top}></div>
       <div className={styles.bottom}></div>
       <div className={styles.center}>
@@ -17,7 +19,7 @@ const ProfilePage = () => {
       {arr.map((a, i) => {
           return (
             <div className={styles.card} key={i}>
-              <p className={styles.userTranslation}>Translate Translate Translate Translate</p>
+              <p className={styles.userTranslation}>Translate Translate Translate Translate</p> 
               <button className={styles.deleteTranslationBtn} onClick={deleteTranslation}><FaRegTrashAlt /> Delete</button>
             </div>
          )

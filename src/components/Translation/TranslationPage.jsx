@@ -1,10 +1,8 @@
 import { useState } from 'react'
-import { useHistory } from 'react-router'
 import Navbar from '../Navbar/Navbar'
 import styles from '../Translation/TranslationPage.module.css'
 
 const TranslationPage = () => {
-  const history = useHistory();
   const [translationText, setTranslationText] = useState('')
   const [clicked, setClicked] = useState(false)
   const [images, setImages] = useState(null)

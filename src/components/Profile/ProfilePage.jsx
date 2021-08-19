@@ -84,14 +84,15 @@ const ProfilePage = () => {
       <div>
       <button className={styles.deleteTranslationBtn} onClick={deleteTranslation}><FaRegTrashAlt /> Delete all translations</button>
       </div>
-      {translations && translations.map((a, i) => {
-          return (
-            <div className={styles.card} key={i}>
-              <p className={styles.userTranslation}>{translations[i].text}</p> 
-              
-            </div>
-         )
-      })}
+      <div className={styles.cardsContainer}>
+        {translations && translations.map((a, i) => {
+            return (
+              <div className={styles.card} key={i}>
+                <p className={styles.userTranslation}>{translations[i].text}</p> 
+              </div>
+          )
+        })}
+      </div>
       </div>
     </div>
   )

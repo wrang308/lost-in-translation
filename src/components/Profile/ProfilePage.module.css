@@ -45,7 +45,7 @@
 }
 
 .usersTranslationsTitle {
-  color: #000000;
+  color: #fff;
   text-transform: uppercase;
   z-index: 10;
   top: -100px;
@@ -65,35 +65,38 @@
   margin: 40px;
   margin-bottom: 15px;
   border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .userTranslation {
   color: #fff;
   color: #000000;
   font-size: 18px;
-  position: absolute;
-  top: 50%;
-  left: 40%;
-  transform: translate(-50%,-50%);
+  text-align: center;
 }
 
 .deleteTranslationBtn {
-  z-index: 99999999;
+  z-index: 999;
   background-color: #c51927;
   border: none;
   padding: 10px;
   border-radius: 10px;
   color: #fff;
   cursor: pointer;
-  margin-left: 200px;
   position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(-50%,-50%);
   transition: all .5s;
+  margin-top: 40px;
 }
 
 .deleteTranslationBtn:hover {
   background-color: #991520;
   transition: all .5s;
+}
+
+.cardsContainer {
+  margin-top: 50px;
+  z-index: 999;
 }

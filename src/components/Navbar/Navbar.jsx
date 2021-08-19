@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { useHistory  } from 'react-router'
 import styles from '../Navbar/Navbar.module.css'
+import { useEffect } from 'react';
 
 const Navbar = () => {
   const history = useHistory()
@@ -8,14 +9,13 @@ const Navbar = () => {
   const handleLogOut = () => {
     localStorage.clear();
     history.goBack('/');
-    //history.push('/')
   }
 
-  
-  if(!localStorage.getItem('username')){
-    history.push('/')
-  }
-
+  useEffect(() => {
+    if(!localStorage.getItem('username')){
+      history.push('/')
+    }
+  })
   return (
     <div>
       <header className={styles.header}>

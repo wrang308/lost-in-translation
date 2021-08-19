@@ -31,7 +31,6 @@ const StartUpPage = () => {
     })
     .then((response) => response.json())
     .then(data => {
-      console.log(JSON.stringify(user));
       //user doesn't exist, add to database
       if(data.length === 0){
         fetch((url), {

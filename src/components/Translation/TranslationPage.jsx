@@ -30,9 +30,7 @@ const TranslationPage = () => {
     })
     .then((response) => response.json())
     .then(data => {
-      console.log(data[0].id)
       //user doesn't exist, add to database
-        console.log(JSON.stringify(translationText))
         fetch((url+"users/"+data[0].id+"/searches"), {
           method: 'POST',
           headers: {
@@ -43,37 +41,12 @@ const TranslationPage = () => {
             "status":"active",
             "userId": data[0].id
         }),
-        })
-/*         .then(
-          fetch((url+"searches?status=active&userId=" + data[0].id),  {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          })
-          .then((response) => response.json())
-          .then(data => {
-            if(data.length > 10){
-              console.log("delete one translation")
-              fetch((url+"searches/"+data[0].id), {
-                method: 'PATCH',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({"status":"deleted"})
-              })
-            }
-            
-          })
-          
-        ) */
-      
+        })      
     })
     .catch((error) => {
       console.error('Error:', error);
     })
 
-    console.log(translationText)
     setClicked(true)
     translateTextToImages()
   }
@@ -105,7 +78,10 @@ const TranslationPage = () => {
           {clicked === true && (
             <div className={styles.translationContainer}>
               {images && images.map((e, i) => {
-                return <img src={e} alt={e} key={i} className={styles.signImages} />
+                if(e !== '../media/signs/ .png') {
+                  return <img src={e} alt={e} key={i} className={styles.signImages} />
+                }
+                return <div key={i}></div>
               })}
             </div>
           )}

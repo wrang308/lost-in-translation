@@ -8,7 +8,6 @@ const ProfilePage = () => {
   const url = "http://localhost:3000/";
 
   useEffect(() => {
- 
     fetch((url+"users/?username="+localStorage.getItem("username")), {
       method: 'GET',
       headers: {
@@ -29,24 +28,20 @@ const ProfilePage = () => {
         })
       
     })
-    
     .catch((error) => {
       console.error('Error:', error);
     })
   }, [])
 
-
   const deleteTranslation = async() => {
-    console.log("in new delete")
-    const response = await getUserIdByUserName(localStorage.getItem("username"))
-    const data = await response.json()
+    const userId = await getUserIdByUserName(localStorage.getItem("username"))
+    const userIdData = await userId.json()
 
-    const response2 = await getAllActiveTranslationsByUserId(data[0].id)
-    const data2 = await response2.json()
+    const getTranslations = await getAllActiveTranslationsByUserId(userIdData[0].id)
+    const translationsData = await getTranslations.json()
 
-    await deleteAllActiveTranslations(data2);
+    await deleteAllActiveTranslations(translationsData);
     setTranslations(null)
-    //console.log(data2)
   }
 
   const getUserIdByUserName = async (userName) => {
@@ -68,9 +63,7 @@ const ProfilePage = () => {
   }
 
   const deleteAllActiveTranslations = async (data) => {
-    console.log(data)
     for (let i = 0; i < data.length; i++) {
-
         await fetch((url+"searches/"+data[i].id), {
           method: 'PATCH',
           headers: {
@@ -81,47 +74,6 @@ const ProfilePage = () => {
     }
   }
 
-  const deleteTranslationOld = () => {
-
-    fetch((url+"users/?username="+localStorage.getItem("username")), {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    .then((response) => response.json())
-    .then(data => {
-        fetch((url+"searches?status=active&userId="+data[0].id), {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-        .then((response) => response.json())
-        .then(data => {
-          console.log(data)
-          for (let i = 0; i < data.length; i++) {
-            setTimeout(function() {
-              fetch((url+"searches/"+data[i].id), {
-                method: 'PATCH',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({"status":"deleted"})
-              })
-          }, 50 * (i+1));
-          }
-        })
-      
-    })
-    
-    .catch((error) => {
-      console.error('Error:', error);
-    })
-
-    setTranslations(null)
-  }
-
   return (
     <div className={styles.container}>
       <Navbar />
@@ -130,7 +82,7 @@ const ProfilePage = () => {
       <div className={styles.center}>
       <h2 className={styles.usersTranslationsTitle}>Your last translations</h2>
       <div>
-      <button className={styles.deleteTranslationBtn} onClick={deleteTranslation}><FaRegTrashAlt /> Delete</button>
+      <button className={styles.deleteTranslationBtn} onClick={deleteTranslation}><FaRegTrashAlt /> Delete all translations</button>
       </div>
       {translations && translations.map((a, i) => {
           return (
@@ -140,9 +92,7 @@ const ProfilePage = () => {
             </div>
          )
       })}
-      
       </div>
-  
     </div>
   )
 }

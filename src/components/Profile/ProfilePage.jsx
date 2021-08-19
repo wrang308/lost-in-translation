@@ -7,6 +7,10 @@ const ProfilePage = () => {
   const [translations, setTranslations] = useState(null)
   const url = "http://localhost:3000/";
 
+  /**
+   * Fetches the logged in user's 10 latest translations,
+   * marked as active
+   */
   useEffect(() => {
     fetch((url+"users/?username="+localStorage.getItem("username")), {
       method: 'GET',
@@ -33,6 +37,9 @@ const ProfilePage = () => {
     })
   }, [])
 
+  /**
+   * Deletes the logged in user's translations
+   */
   const deleteTranslation = async() => {
     const userId = await getUserIdByUserName(localStorage.getItem("username"))
     const userIdData = await userId.json()
@@ -44,6 +51,12 @@ const ProfilePage = () => {
     setTranslations(null)
   }
 
+  /**
+   * Fetches the user id by username
+   * @param {userName} userName is used to get the user id
+   * @returns response with user id
+   * 
+   */
   const getUserIdByUserName = async (userName) => {
     return await fetch(url+"users/?username="+userName, {
       method: 'GET',
@@ -53,6 +66,12 @@ const ProfilePage = () => {
     } )
   }
 
+  /**
+   * Fetches all active translations that are active for the logged in user
+   * @param {userId} userId is used to get the translations for the specific user
+   * @returns response with all translations that are active for that user
+   * 
+   */
   const getAllActiveTranslationsByUserId = async (userId) => {
     return await fetch((url+"searches?status=active&userId="+userId), {
       method: 'GET',
@@ -62,9 +81,13 @@ const ProfilePage = () => {
     })
   }
 
-  const deleteAllActiveTranslations = async (data) => {
-    for (let i = 0; i < data.length; i++) {
-        await fetch((url+"searches/"+data[i].id), {
+  /**
+   * Iterates through all translations and sets their status to 'deleted'
+   * @param {translations} translations are all fetched translations that will be set to 'deleted'
+   */
+  const deleteAllActiveTranslations = async (translations) => {
+    for (let i = 0; i < translations.length; i++) {
+        await fetch((url+"searches/"+translations[i].id), {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',

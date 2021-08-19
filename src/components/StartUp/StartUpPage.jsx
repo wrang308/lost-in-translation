@@ -6,21 +6,30 @@ const StartUpPage = () => {
   const history = useHistory();
   const [username, setUsername] = useState('')
 
+  /**
+   * Checks if user is already logged in, the user gets re-directed to the translation page
+   */
   useEffect(() => {
     if(localStorage.getItem('username')){
       history.push('/translator')
     }
   })
 
-  const handleOnClick = () => {
+  /***
+   * Tries to log in user, sets the user to logged in and re-directs the user to the translation page
+   */
+  const handleLogInBtn = () => {
     if(username !== ''){
       localStorage.clear();
       localStorage.setItem('username', username);
-      postUser({"username":username, "searches": []});
+      postUser({"username": username});
       history.push('/translator')
     }
   }
 
+  /**
+   * Checks if the user exists in the database, if the user doesn't exist, the user is added to the database
+   */
   const postUser = (user) => {
     const url = "http://localhost:3000/users/";
     fetch((url+"?username="+username), {
@@ -46,6 +55,11 @@ const StartUpPage = () => {
       console.error('Error:', error);
     })
   }
+
+  /**
+   * Sets the username to the value of the username input
+   * @param {e} e, event of input change 
+   */
   const handleUsernameChange = e => {
     setUsername(e.target.value);
   }
@@ -57,7 +71,7 @@ const StartUpPage = () => {
     <div className={styles.center}>
       <h2>Please sign in</h2>
       <input type="text" placeholder="username" onChange={handleUsernameChange}/>
-      <button className={styles.loginButton} onClick={handleOnClick}>Login</button>
+      <button className={styles.loginButton} onClick={handleLogInBtn}>Login</button>
     </div>
   </div>
   )

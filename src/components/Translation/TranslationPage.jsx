@@ -7,54 +7,62 @@ const TranslationPage = () => {
   const [clicked, setClicked] = useState(false)
   const [images, setImages] = useState(null)
 
+  /**
+   * Handles translation button click, checks if the translation text matches the requirements
+   * If the requirements are met, the translation text gets added to the searches database
+   * and the translateTextToImages method gets called
+   */
   const handleTranslateBtn = () => {
     if(translationText.length > 40){
       alert("max 40 characters long text");
-      return;
-    }
-    if(/[^a-zA-Z ]/.test(translationText)){
+    } else if(/[^a-zA-Z ]/.test(translationText)){
       alert("text can only contain a-z and spaces");
-      return;
-    }
-    if(!translationText.replace(/\s/g, '').length){
+    } else if(!translationText.replace(/\s/g, '').length){
       alert("Must contains text");
-      return;
     }
     
-    const url = "http://localhost:3000/";
-    fetch((url+"users/?username="+localStorage.getItem("username")), {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    .then((response) => response.json())
-    .then(data => {
-      //user doesn't exist, add to database
-        fetch((url+"users/"+data[0].id+"/searches"), {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            "text":translationText,
-            "status":"active",
-            "userId": data[0].id
-        }),
-        })      
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    })
-
-    setClicked(true)
-    translateTextToImages()
+    else {
+      const url = "http://localhost:3000/";
+      fetch((url+"users/?username="+localStorage.getItem("username")), {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((response) => response.json())
+      .then(data => {
+          fetch((url+"users/"+data[0].id+"/searches"), {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              "text":translationText,
+              "status":"active",
+              "userId": data[0].id
+          }),
+          })      
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      })
+      
+      setClicked(true)
+      translateTextToImages()
+    }
   }
 
+  /**
+   * Sets the translation text to the value of the translation input
+   * @param {e} e, event of input change 
+   */
   const handleTranslationTextChange = e => {
     setTranslationText(e.target.value);
   }
 
+  /**
+   * Updates images array based on the translation text
+   */
   const translateTextToImages = () => {
     setImages(translationText.split('').map(e => `../media/signs/${e}.png`))
   }

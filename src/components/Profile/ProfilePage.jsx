@@ -35,7 +35,53 @@ const ProfilePage = () => {
     })
   }, [])
 
-  const deleteTranslation = () => {
+
+  const deleteTranslation = async() => {
+    console.log("in new delete")
+    const response = await getUserIdByUserName(localStorage.getItem("username"))
+    const data = await response.json()
+
+    const response2 = await getAllActiveTranslationsByUserId(data[0].id)
+    const data2 = await response2.json()
+
+    await deleteAllActiveTranslations(data2);
+    setTranslations(null)
+    //console.log(data2)
+  }
+
+  const getUserIdByUserName = async (userName) => {
+    return await fetch(url+"users/?username="+userName, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    } )
+  }
+
+  const getAllActiveTranslationsByUserId = async (userId) => {
+    return await fetch((url+"searches?status=active&userId="+userId), {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+  }
+
+  const deleteAllActiveTranslations = async (data) => {
+    console.log(data)
+    for (let i = 0; i < data.length; i++) {
+
+        await fetch((url+"searches/"+data[i].id), {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({"status":"deleted"})
+        })
+    }
+  }
+
+  const deleteTranslationOld = () => {
 
     fetch((url+"users/?username="+localStorage.getItem("username")), {
       method: 'GET',
@@ -54,25 +100,17 @@ const ProfilePage = () => {
         .then((response) => response.json())
         .then(data => {
           console.log(data)
-          
-            for (const element of data) {
-              fetch((url+"searches/"+element.id), {
+          for (let i = 0; i < data.length; i++) {
+            setTimeout(function() {
+              fetch((url+"searches/"+data[i].id), {
                 method: 'PATCH',
                 headers: {
                   'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({"status":"deleted"})
               })
-  
-              //console.log(e.id)
-            }
-            
-          //data.map(e => {
-
-
-          //loopa igenom allt här
-
-          
+          }, 50 * (i+1));
+          }
         })
       
     })

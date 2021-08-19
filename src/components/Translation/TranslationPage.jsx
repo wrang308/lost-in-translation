@@ -22,11 +22,9 @@ const TranslationPage = () => {
       alert("Must contains text");
       return;
     }
-
-    console.log(localStorage.getItem("username"));
     
-    const url = "http://localhost:3000/users/";
-    fetch((url+"?username="+localStorage.getItem("username")), {
+    const url = "http://localhost:3000/";
+    fetch((url+"users/?username="+localStorage.getItem("username")), {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -37,7 +35,7 @@ const TranslationPage = () => {
       console.log(data[0].id)
       //user doesn't exist, add to database
         console.log(JSON.stringify(translationText))
-        fetch((url+data[0].id+"/searches"), {
+        fetch((url+"users/"+data[0].id+"/searches"), {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -48,6 +46,29 @@ const TranslationPage = () => {
             "userId": data[0].id
         }),
         })
+/*         .then(
+          fetch((url+"searches?status=active&userId=" + data[0].id),  {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          })
+          .then((response) => response.json())
+          .then(data => {
+            if(data.length > 10){
+              console.log("delete one translation")
+              fetch((url+"searches/"+data[0].id), {
+                method: 'PATCH',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({"status":"deleted"})
+              })
+            }
+            
+          })
+          
+        ) */
       
     })
     .catch((error) => {

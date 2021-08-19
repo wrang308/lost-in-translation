@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory  } from 'react-router'
 import styles from '../StartUp/StartUpPage.module.css'
 
@@ -6,12 +6,13 @@ const StartUpPage = () => {
   const history = useHistory();
   const [username, setUsername] = useState('')
 
-  if(localStorage.getItem('username')){
-    history.push('/translator')
-  }
+  useEffect(() => {
+    if(localStorage.getItem('username')){
+      history.push('/translator')
+    }
+  })
 
   const handleOnClick = () => {
-    
     if(username !== ''){
       localStorage.clear();
       localStorage.setItem('username', username);

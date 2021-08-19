@@ -12,29 +12,31 @@ const ProfilePage = () => {
    * marked as active
    */
   useEffect(() => {
-    fetch((url+"users/?username="+localStorage.getItem("username")), {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    .then((response) => response.json())
-    .then(data => {
-        fetch((url+"searches?status=active&userId="+data[0].id+"&_sort=id&_order=desc&_limit=10"), {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-        .then((response) => response.json())
-        .then(data => {
-          setTranslations(data);
-        })
-      
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    })
+    if(localStorage.getItem('username')){
+      fetch((url+"users/?username="+localStorage.getItem("username")), {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((response) => response.json())
+      .then(data => {
+          fetch((url+"searches?status=active&userId="+data[0].id+"&_sort=id&_order=desc&_limit=10"), {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          })
+          .then((response) => response.json())
+          .then(data => {
+            setTranslations(data);
+          })
+        
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      })
+    }
   }, [])
 
   /**

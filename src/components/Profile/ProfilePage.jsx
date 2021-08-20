@@ -57,7 +57,6 @@ const ProfilePage = () => {
    * Fetches the user id by username
    * @param {userName} userName is used to get the user id
    * @returns response with user id
-   * 
    */
   const getUserIdByUserName = async (userName) => {
     return await fetch(url+"users/?username="+userName, {
@@ -69,10 +68,9 @@ const ProfilePage = () => {
   }
 
   /**
-   * Fetches all active translations that are active for the logged in user
+   * Fetches all translations that are active for the logged in user
    * @param {userId} userId is used to get the translations for the specific user
    * @returns response with all translations that are active for that user
-   * 
    */
   const getAllActiveTranslationsByUserId = async (userId) => {
     return await fetch((url+"searches?status=active&userId="+userId), {

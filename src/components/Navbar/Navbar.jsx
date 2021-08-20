@@ -16,7 +16,7 @@ const Navbar = () => {
   }
 
   /**
-   * Checks if a user logged in or not,
+   * Checks if a user is logged in or not,
    * if not logged in, the user gets re-directed to the start page.
    */
   useEffect(() => {

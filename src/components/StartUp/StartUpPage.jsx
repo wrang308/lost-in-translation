@@ -15,7 +15,7 @@ const StartUpPage = () => {
     }
   })
 
-  /***
+  /**
    * Tries to log in user, sets the user to logged in and re-directs the user to the translation page
    */
   const handleLogInBtn = () => {

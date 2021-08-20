@@ -5,7 +5,7 @@ import styles from '../Profile/ProfilePage.module.css'
 
 const ProfilePage = () => {
   const [translations, setTranslations] = useState(null)
-  const url = "http://localhost:3000/";
+  const url = "https://polar-fortress-35611.herokuapp.com/";
 
   /**
    * Fetches the logged in user's 10 latest translations,

@@ -31,7 +31,7 @@ const StartUpPage = () => {
    * Checks if the user exists in the database, if the user doesn't exist, the user is added to the database
    */
   const postUser = (user) => {
-    const url = "http://localhost:3000/users/";
+    const url = "https://polar-fortress-35611.herokuapp.com/users/";
     fetch((url+"?username="+username), {
       method: 'GET',
       headers: {

@@ -22,7 +22,7 @@ const TranslationPage = () => {
     }
     
     else {
-      const url = "http://localhost:3000/";
+      const url = "https://polar-fortress-35611.herokuapp.com/";
       fetch((url+"users/?username="+localStorage.getItem("username")), {
         method: 'GET',
         headers: {

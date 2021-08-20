@@ -6,3 +6,4 @@ Lost in Translation is an online sign language translator where the user can tra
 This application uses ReactJS. 
 
 ## Check out Lost in Translation
+https://polar-fortress-35611.herokuapp.com/

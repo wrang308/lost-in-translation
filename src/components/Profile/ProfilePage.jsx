@@ -18,9 +18,7 @@ const ProfilePage = () => {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-  
-            console.log(doc.id, ' => ', doc.data());
-            console.log(doc.id, ' => ', doc.data().translations);
+
             setTranslations(doc.data().translations)
   
         });

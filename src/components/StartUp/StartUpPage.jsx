@@ -36,14 +36,13 @@ const StartUpPage = () => {
   const postUser = (user) => {
     ref.where("username", "==", username)
     .get()
-    //.then(data => {console.log(data)})
     .then((querySnapshot) => {
       if(querySnapshot.size == 0){
           ref
           .doc()
             .set(user)
             .then(() => {
-              console.log(username + " added");
+              console.log(username + " added to DB");
           })
             .catch((err) => {
               console.error(err);

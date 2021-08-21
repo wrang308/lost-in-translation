@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useHistory  } from 'react-router'
 import styles from '../StartUp/StartUpPage.module.css'
+import firebase from '../../firebase';
 
 const StartUpPage = () => {
   const history = useHistory();
   const [username, setUsername] = useState('')
+
+  const ref = firebase.firestore().collection("users");
 
   /**
    * Checks if user is already logged in, the user gets re-directed to the translation page
@@ -22,7 +25,7 @@ const StartUpPage = () => {
     if(username !== ''){
       localStorage.clear();
       localStorage.setItem('username', username);
-      postUser({"username": username});
+      postUser({"username": username, "translations": []});
       history.push('/translator')
     }
   }
@@ -31,29 +34,25 @@ const StartUpPage = () => {
    * Checks if the user exists in the database, if the user doesn't exist, the user is added to the database
    */
   const postUser = (user) => {
-    const url = "https://polar-fortress-35611.herokuapp.com/users/";
-    fetch((url+"?username="+username), {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    .then((response) => response.json())
-    .then(data => {
-      //user doesn't exist, add to database
-      if(data.length === 0){
-        fetch((url), {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(user),
-        })
+    ref.where("username", "==", username)
+    .get()
+    //.then(data => {console.log(data)})
+    .then((querySnapshot) => {
+      if(querySnapshot.size == 0){
+          ref
+          .doc()
+            .set(user)
+            .then(() => {
+              console.log(username + " added");
+          })
+            .catch((err) => {
+              console.error(err);
+            });
       }
     })
-    .catch((error) => {
-      console.error('Error:', error);
-    })
+    .catch((err) => {
+      console.error(err);
+    });
   }
 
   /**

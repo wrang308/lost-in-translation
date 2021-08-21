@@ -1,11 +1,14 @@
 import { useState } from 'react'
 import Navbar from '../Navbar/Navbar'
 import styles from '../Translation/TranslationPage.module.css'
+import firebase from '../../firebase';
 
 const TranslationPage = () => {
   const [translationText, setTranslationText] = useState('')
   const [clicked, setClicked] = useState(false)
   const [images, setImages] = useState(null)
+  
+  const ref = firebase.firestore().collection("users");
 
   /**
    * Handles translation button click, checks if the translation text matches the requirements
@@ -22,30 +25,24 @@ const TranslationPage = () => {
     }
     
     else {
-      const url = "https://polar-fortress-35611.herokuapp.com/";
-      fetch((url+"users/?username="+localStorage.getItem("username")), {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+      ref.where("username", "==", localStorage.getItem("username"))
+      .get()
+      //.then(data => {console.log(data)})
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+
+          ref
+          .doc(doc.id)
+          .update({"username": doc.data().username, "translations": [...doc.data().translations, translationText]})
+          .catch((err) => {
+            console.error(err);
+          });
+
+        });
       })
-      .then((response) => response.json())
-      .then(data => {
-          fetch((url+"users/"+data[0].id+"/searches"), {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              "text":translationText,
-              "status":"active",
-              "userId": data[0].id
-          }),
-          })      
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      })
+      .catch((err) => {
+        console.error(err);
+      });
       
       setClicked(true)
       translateTextToImages()

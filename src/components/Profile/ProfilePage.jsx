@@ -19,7 +19,7 @@ const ProfilePage = () => {
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
 
-            setTranslations(doc.data().translations)
+            setTranslations(doc.data().translations.slice(Math.max(doc.data().translations.length - 10, 0)))
   
         });
       })
@@ -40,7 +40,7 @@ const ProfilePage = () => {
 
         ref
         .doc(doc.id)
-        .update({"username": doc.data().username, "translations": []})
+        .update({"username": doc.data().username, "translations": [], "deleted": [...doc.data().deleted, ...doc.data().translations]})
         .catch((err) => {
           console.error(err);
         });

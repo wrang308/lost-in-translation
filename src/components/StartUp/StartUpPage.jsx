@@ -25,7 +25,7 @@ const StartUpPage = () => {
     if(username !== ''){
       localStorage.clear();
       localStorage.setItem('username', username);
-      postUser({"username": username, "translations": []});
+      postUser({"username": username, "translations": [], "deleted":[]});
       history.push('/translator')
     }
   }

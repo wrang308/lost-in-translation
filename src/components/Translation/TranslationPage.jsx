@@ -27,7 +27,6 @@ const TranslationPage = () => {
     else {
       ref.where("username", "==", localStorage.getItem("username"))
       .get()
-      //.then(data => {console.log(data)})
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
 
@@ -61,7 +60,7 @@ const TranslationPage = () => {
    * Updates images array based on the translation text
    */
   const translateTextToImages = () => {
-    setImages(translationText.split('').map(e => `../media/signs/${e}.png`))
+    setImages(translationText.toLocaleLowerCase().split('').map(e => `../media/signs/${e}.png`))
   }
 
   return (
